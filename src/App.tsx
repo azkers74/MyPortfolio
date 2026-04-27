@@ -1,6 +1,8 @@
 import './App.css'
 
 function App() {
+  const portraitImageUrl = `${import.meta.env.BASE_URL}Lloyd.jpg`
+
   const projects = [
     {
       title: 'InvoiceFlow',
@@ -110,7 +112,7 @@ function App() {
             </article>
 
             <aside className="art-card">
-              <img className="art-photo" src="/Lloyd.jpg" alt="Lloyd portrait" />
+              <img className="art-photo" src={portraitImageUrl} alt="Lloyd portrait" />
             </aside>
           </div>
         </section>

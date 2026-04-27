@@ -2,8 +2,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import * as path from 'path'
 
-export default defineConfig({
-  base: './',
+export default defineConfig(({ command }) => ({
+  base: command === 'build' ? '/MyPortfolio/' : '/',
 
   server: {
     host: "::",
@@ -28,7 +28,7 @@ export default defineConfig({
       },
     },
   },
-})
+}))
 
 
 
