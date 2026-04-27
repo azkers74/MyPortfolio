@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+  --bg: #030612;
+  --bg-soft: #070d22;
+  --title: #f6f8ff;
+  --text: #e4e8f8;
+  --muted: #9eabc8;
+  --line: rgba(152, 170, 219, 0.22);
+  --line-strong: rgba(152, 170, 219, 0.4);
+  --accent: #ffac41;
+
+  --sans: 'Outfit', 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', Consolas, monospace;
+
+  font-family: var(--sans);
+  line-height: 1.5;
+  color: var(--text);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  background:
+    radial-gradient(circle at 48% -6%, rgba(255, 142, 34, 0.18), transparent 40%),
+    linear-gradient(180deg, var(--bg-soft) 0%, var(--bg) 55%, #060a1d 100%);
+}
+
+#root {
+  width: 100%;
+}
