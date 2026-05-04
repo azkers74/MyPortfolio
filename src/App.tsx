@@ -1,40 +1,87 @@
+import { useEffect, useState } from 'react'
 import './App.css'
 
-function App() {
-  const portraitImageUrl = `${import.meta.env.BASE_URL}Lloyd.jpg`
+interface Project {
+  title: string
+  description: string
+  stack: string[]
+  images?: string[]
+}
 
-  const projects = [
+function App() {
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark')
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
+  const [zoomedImage, setZoomedImage] = useState<string | null>(null)
+  const portraitImageUrl = `${import.meta.env.BASE_URL}Lloyd.jpg`
+  const brandLogoUrl = `${import.meta.env.BASE_URL}${theme === 'dark' ? 'Logo1.png' : 'Logo2.png'}`
+
+  const modalActive = Boolean(selectedProject || zoomedImage)
+
+  useEffect(() => {
+    if (!modalActive) {
+      document.body.style.overflow = ''
+      document.body.style.paddingRight = ''
+      return
+    }
+
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+    document.body.style.overflow = 'hidden'
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`
+    }
+
+    return () => {
+      document.body.style.overflow = ''
+      document.body.style.paddingRight = ''
+    }
+  }, [modalActive])
+
+  useEffect(() => {
+    setSelectedImageIndex(0)
+  }, [selectedProject])
+
+  const projects: Project[] = [
     {
-      title: 'InvoiceFlow',
+      title: 'Daily Monitoring Sheet',
       description:
-        'Automated invoicing tool for freelancers. Generates branded PDFs and sends client reminders on schedule.',
-      stack: ['Google Apps Script', 'Sheets API', 'HTML'],
+        'Automated trip and sales monitoring system built on Google Sheets. Provides client trip tracking, rate computation, sales recording, and real-time status updates in a centralized dashboard.',
+      stack: ['Google Sheets', 'Google Apps Script', 'Google Gspreed API',  'Sheets API', 'Pivot Tables'],
+      images: [`${import.meta.env.BASE_URL}DMS CARGO.png`, `${import.meta.env.BASE_URL}DMS PORT VISMIN.png`, `${import.meta.env.BASE_URL}DMS ZION.png`],
     },
     {
-      title: 'TaskBoard',
+      title: 'FCT (Fuel Control Team)',
       description:
-        'Kanban app with drag-and-drop, real-time updates, and SQL-backed activity history.',
-      stack: ['React', 'TypeScript', 'PostgreSQL'],
+        'Fuel request and liquidation management system built using Power Apps Canvas. Enables users to submit fuel requests, attach receipts, and complete liquidation per transaction. Integrates SharePoint for document and attachment storage, and SQL for structured data management. Includes approval workflows, real-time status tracking, fuel consumption monitoring, audit logs, and centralized reporting to ensure transparency, compliance, and efficient fuel control operations.',
+      stack: ['Power Apps Canvas', 'SharePoint', 'Microsoft SQL Server', 'Power Automate','Stored Procedures'],
+      images: [`${import.meta.env.BASE_URL}FCT1.png`, `${import.meta.env.BASE_URL}FCT2.png`, `${import.meta.env.BASE_URL}FCT3.png`, `${import.meta.env.BASE_URL}FCT4.png`, `${import.meta.env.BASE_URL}FCT5.png`],
     },
     {
-      title: 'SchoolMetrics',
+      title: 'SD APP (Source and Destination App)',
       description:
-        'Dashboard for a local school that parses attendance files and surfaces trends with charts.',
-      stack: ['React', 'SQL', 'Recharts'],
+        'A logistics routing and costing system that manages Source-to-Destination trip configurations. It enables registration of routes with Trip KM, fuel budget approval, driver/helper rate computation, and dynamic trip rate calculation per assignment.',
+      stack: ['Power Apps vite', 'Power Automate', 'React', 'TypeScript', 'SQL', 'SharePoint'],
+      images: [`${import.meta.env.BASE_URL}SD1.png`, `${import.meta.env.BASE_URL}SD2.png`, `${import.meta.env.BASE_URL}SD3.png`, `${import.meta.env.BASE_URL}SD4.png`, `${import.meta.env.BASE_URL}SD5.png`, `${import.meta.env.BASE_URL}SD6.png`],
     },
-    {
-      title: 'DocSign Lite',
-      description:
-        'Lightweight e-signature flow inside Google Docs with approvals and Drive-based access controls.',
-      stack: ['Apps Script', 'Drive API', 'OAuth'],
-    },
+
   ]
 
   return (
-    <div className="page-shell">
+    <div className={`page-shell ${theme}-mode`}>
+      <div className="theme-banner">
+        <span>{theme === 'dark' ? 'Night mode' : 'Light mode'}</span>
+        <button
+          type="button"
+          className="theme-toggle-btn"
+          onClick={() => setTheme((current) => (current === 'dark' ? 'light' : 'dark'))}
+        >
+          Switch to {theme === 'dark' ? 'light' : 'dark'} mode
+        </button>
+      </div>
       <header className="nav-wrap">
         <div className="container nav">
           <a className="brand" href="#top">
+            <img className="brand-logo" src={brandLogoUrl} alt="Lloyd.Dev logo" />
             Lloyd.Dev
           </a>
           <nav>
@@ -62,8 +109,8 @@ function App() {
                 <span>code.</span>
               </h1>
               <p>
-                Hi, I&apos;m Alex, a junior developer who turns ideas into shipped
-                products using <strong>React</strong>, <strong>SQL</strong>, and{' '}
+                Hi, I&apos;m Lloyd, a junior developer who turns ideas into shipped
+                products using <strong>Power apps vite</strong>, <strong>React JS</strong>, <strong>SQL/Sharepoint</strong>, and{' '}
                 <strong>Google Apps Script</strong>.
               </p>
               <div className="hero-actions">
@@ -107,7 +154,7 @@ function App() {
                     </svg>
                   </a>
                 </div>
-                <p className="meta">/ based in Lisbon, PT</p>
+                <p className="meta">/ based in Philippines, QC</p>
               </div>
             </article>
 
@@ -120,11 +167,11 @@ function App() {
         <section className="about section" id="about">
           <div className="container about-grid">
             <article>
-              <p className="label">// About me</p>
+              <p className="label">About me</p>
               <h2>Curious mind, pragmatic builder.</h2>
               <p>
-                I started coding by automating spreadsheet workflows and never
-                stopped. Today I build full web apps in React backed by SQL and Sharepoint.
+                I started by automating spreadsheet workflows using GSpread, which sparked my interest in development. Since then,
+                I’ve expanded into building apps with Power Apps, using SharePoint and SQL as backends.
               </p>
               <p>
                 I&apos;m looking for my first full-time developer role where I can
@@ -133,11 +180,11 @@ function App() {
             </article>
             <div className="stat-row">
               <div className="stat-card">
-                <strong>12+</strong>
+                <strong>10+</strong>
                 <span>Projects shipped</span>
               </div>
               <div className="stat-card">
-                <strong>2</strong>
+                <strong>4</strong>
                 <span>Years coding</span>
               </div>
               <div className="stat-card">
@@ -150,11 +197,16 @@ function App() {
 
         <section className="section" id="projects">
           <div className="container">
-            <p className="label">// Projects</p>
+            <p className="label">Projects</p>
             <h2>A few things I&apos;ve built recently.</h2>
             <div className="cards-grid">
               {projects.map((project) => (
-                <article className="project-card" key={project.title}>
+                <article 
+                  className="project-card" 
+                  key={project.title}
+                  onClick={() => setSelectedProject(project)}
+                  style={{ cursor: 'pointer' }}
+                >
                   <header>
                     <h3>{project.title}</h3>
                     <span>↗</span>
@@ -174,45 +226,40 @@ function App() {
         <section className="section split" id="experience">
           <div className="container split-grid">
             <article>
-              <p className="label">// Experience</p>
+              <p className="label">Experience</p>
               <h2>Where I&apos;ve worked and learned.</h2>
               <div className="timeline">
                 <article className="timeline-item">
-                  <p className="timeline-year">2024 - Present</p>
-                  <h3>Freelance Developer</h3>
-                  <p className="timeline-company">Self-employed</p>
+                  <p className="timeline-year">2022 - Present</p>
+                  <h3>Great Sierra Development Corp</h3>
+                  <p className="timeline-company">IT Dev. Staff</p>
                   <ul>
-                    <li>Built React + SQL dashboards for two local businesses.</li>
-                    <li>Automated reporting workflows saving 8h/week per client.</li>
+                    <li>Developed trip monitoring systems per client with dashboards for sales, rates, and trip status.</li>
+                    <li>Automated workflows using Google Sheets and Google Apps Script.</li>
+                    <li>Built Power Apps applications (FCT and SD) integrated with SQL and SharePoint.</li>
                   </ul>
                 </article>
                 <article className="timeline-item">
-                  <p className="timeline-year">2023 - 2024</p>
-                  <h3>Junior Web Developer (Intern)</h3>
-                  <p className="timeline-company">Bright Studio</p>
+                  <p className="timeline-year">2017 - 2021</p>
+                  <h3>Asian Institute of Computer Studies</h3>
+                  <p className="timeline-company">Maintenance</p>
                   <ul>
-                    <li>Shipped landing pages and small features in a React codebase.</li>
-                    <li>Wrote SQL queries and reviewed teammates&apos; pull requests.</li>
-                  </ul>
-                </article>
-                <article className="timeline-item">
-                  <p className="timeline-year">2022 - 2023</p>
-                  <h3>Operations Analyst</h3>
-                  <p className="timeline-company">DataCo</p>
-                  <ul>
-                    <li>Replaced manual spreadsheet work with Google Apps Script tools.</li>
-                    <li>First exposure to engineering and sparked a career shift.</li>
+                    <li>Involvement in School documents filling.</li>
+                    <li>Cleaning Rooms / Maintenance Air-conditioners.</li>
+                    <li>Photo editing.</li>
+                    <li>Event Decorator.</li>
                   </ul>
                 </article>
               </div>
             </article>
 
             <article>
-              <p className="label">// Skills</p>
+              <p className="label">Skills</p>
               <h2>My toolbox.</h2>
               <div className="skill-box">
                 <h5>Languages</h5>
                 <ul className="skill-tags">
+                  <li>Python</li>
                   <li>JavaScript</li>
                   <li>TypeScript</li>
                   <li>SQL</li>
@@ -233,6 +280,7 @@ function App() {
                 <h5>Platforms</h5>
                 <ul className="skill-tags">
                   <li>Google Apps Script</li>
+                  <li>Jupyter Notebook</li>
                   <li>PostgreSQL</li>
                   <li>Git</li>
                   <li>Vercel</li>
@@ -245,7 +293,7 @@ function App() {
         <section className="section" id="contact">
           <div className="container">
             <article className="contact-card">
-              <p className="label">// Contact</p>
+              <p className="label">Contact</p>
               <h2>
                 Let&apos;s build something <span>together.</span>
               </h2>
@@ -266,8 +314,139 @@ function App() {
         </section>
       </main>
 
+      {selectedProject && (
+        <div className="modal-overlay" onClick={() => setSelectedProject(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button 
+              className="modal-close"
+              onClick={() => setSelectedProject(null)}
+            >
+              ✕
+            </button>
+            <div className="modal-header">
+              <h2>{selectedProject.title}</h2>
+            </div>
+            <div className="modal-body">
+              <div className="modal-carousel">
+                <div className="image-display">
+                  <img
+                    src={selectedProject.images?.[selectedImageIndex] ?? ''}
+                    alt={`${selectedProject.title} screenshot ${selectedImageIndex + 1}`}
+                    className="modal-image"
+                  />
+                  <button
+                    className="image-view-overlay"
+                    type="button"
+                    onClick={() => setZoomedImage(selectedProject.images?.[selectedImageIndex] ?? '')}
+                    aria-label="View full image"
+                  >
+                    <svg viewBox="0 0 24 24" className="eye-icon" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                  </button>
+                </div>
+                {selectedProject.images && selectedProject.images.length > 0 && (
+                  <div className="image-controls">
+                    {selectedProject.images.length > 1 && (
+                      <button
+                        className="image-nav-btn"
+                        type="button"
+                        onClick={() =>
+                          setSelectedImageIndex((current) =>
+                            selectedProject.images
+                              ? (current - 1 + selectedProject.images.length) % selectedProject.images.length
+                              : 0,
+                          )
+                        }
+                        aria-label="Previous image"
+                      >
+                        ‹
+                      </button>
+                    )}
+                    <span className="image-counter">
+                      {selectedImageIndex + 1} / {selectedProject.images.length}
+                    </span>
+                    {selectedProject.images.length > 1 && (
+                      <button
+                        className="image-nav-btn"
+                        type="button"
+                        onClick={() =>
+                          setSelectedImageIndex((current) =>
+                            selectedProject.images
+                              ? (current + 1) % selectedProject.images.length
+                              : 0,
+                          )
+                        }
+                        aria-label="Next image"
+                      >
+                        ›
+                      </button>
+                    )}
+                  </div>
+                )}
+              </div>
+              <div className="modal-details">
+                <h3>Project Details</h3>
+                <p>{selectedProject.description}</p>
+                <h4>Tech Stack</h4>
+                <ul className="tech-list">
+                  {selectedProject.stack.map((tech) => (
+                    <li key={tech}>{tech}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {zoomedImage && selectedProject && (
+        <div className="image-zoom-overlay" onClick={() => setZoomedImage(null)}>
+          <button 
+            className="zoom-close-btn"
+            onClick={() => setZoomedImage(null)}
+          >
+            ✕
+          </button>
+          {selectedProject.images && selectedProject.images.length > 1 && (
+            <>
+              <button
+                className="zoom-nav-btn zoom-nav-prev"
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  const count = selectedProject.images?.length ?? 0
+                  const nextIndex = count ? (selectedImageIndex - 1 + count) % count : 0
+                  setSelectedImageIndex(nextIndex)
+                  setZoomedImage(selectedProject.images?.[nextIndex] ?? null)
+                }}
+                aria-label="Previous image"
+              >
+                ‹
+              </button>
+              <button
+                className="zoom-nav-btn zoom-nav-next"
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  const count = selectedProject.images?.length ?? 0
+                  const nextIndex = count ? (selectedImageIndex + 1) % count : 0
+                  setSelectedImageIndex(nextIndex)
+                  setZoomedImage(selectedProject.images?.[nextIndex] ?? null)
+                }}
+                aria-label="Next image"
+              >
+                ›
+              </button>
+            </>
+          )}
+          <img src={zoomedImage} alt="Zoomed preview" className="zoomed-image" onClick={(e) => e.stopPropagation()} />
+        </div>
+      )}
+
       <footer className="site-footer">
-        <p>© 2026 Alex Carter. Built with React &amp; Tailwind.</p>
+        <p>© 2026 Lloyd Bongolo. Built with React &amp; Tailwind.</p>
       </footer>
     </div>
   )

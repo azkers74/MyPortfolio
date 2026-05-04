@@ -7,7 +7,7 @@ export default defineConfig(({ command }) => ({
 
   server: {
     host: "::",
-    port: 3000,
+    port: 4000,
   },
 
   plugins: [react()],
