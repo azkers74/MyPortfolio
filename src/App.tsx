@@ -9,11 +9,12 @@ interface Project {
 }
 
 function App() {
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark')
+  const [theme, setTheme] = useState<'dark' | 'light'>('light')
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
   const [zoomedImage, setZoomedImage] = useState<string | null>(null)
   const portraitImageUrl = `${import.meta.env.BASE_URL}Lloyd.jpg`
+  const cvUrl = `${import.meta.env.BASE_URL}CV.pdf`
   const brandLogoUrl = `${import.meta.env.BASE_URL}${theme === 'dark' ? 'Logo1.png' : 'Logo2.png'}`
 
   const modalActive = Boolean(selectedProject || zoomedImage)
@@ -117,7 +118,7 @@ function App() {
                 <a className="btn btn-primary" href="#projects">
                   See my work <span className="btn-icon">→</span>
                 </a>
-                <a className="btn btn-outline" href="#contact">
+                <a className="btn btn-outline" href={cvUrl} download>
                   <svg className="btn-icon" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M12 3v12" />
                     <path d="m7 10 5 5 5-5" />
@@ -305,10 +306,8 @@ function App() {
                 <a className="btn btn-primary" href="mailto:azkers05@gmail.com">
                   azkers05@gmail.com
                 </a>
-                <a className="btn btn-outline" href="#top">
-                  Download CV
-                </a>
               </div>
+              <h3><strong>Contact #: 09242902830</strong></h3>
             </article>
           </div>
         </section>
