@@ -306,6 +306,9 @@ function App() {
                 <a className="btn btn-primary" href="mailto:azkers05@gmail.com">
                   azkers05@gmail.com
                 </a>
+                <a className="btn btn-outline" href={cvUrl} download>
+                  Download CV
+                </a>
               </div>
               <h3><strong>Contact #: 09242902830</strong></h3>
             </article>
