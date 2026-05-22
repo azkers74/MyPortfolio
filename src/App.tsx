@@ -101,7 +101,7 @@ function App() {
         <section className="hero" id="top">
           <div className="container hero-grid">
             <article className="hero-copy">
-              <p className="status-pill">Available for junior developer roles</p>
+              <p className="status-pill">Available for junior & Full stock developer roles</p>
               <h1>
                 Building clean,
                 <br />
@@ -236,7 +236,7 @@ function App() {
                   <p className="timeline-company">IT Dev. Staff</p>
                   <ul>
                     <li>Developed trip monitoring systems per client with dashboards for sales, rates, and trip status.</li>
-                    <li>Automated workflows using Google Sheets and Google Apps Script.</li>
+                    <li>Automated workflows using Google Sheets, Python and Google Apps Script.</li>
                     <li>Built Power Apps applications (FCT and SD) integrated with SQL and SharePoint.</li>
                   </ul>
                 </article>
