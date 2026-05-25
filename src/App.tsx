@@ -5,11 +5,11 @@ interface Project {
   title: string
   description: string
   stack: string[]
-  images?: string[]
+  images?: string[]                                                                                                                                                                                                                                                                                                                                                                              
 }
 
 function App() {
-  const [theme, setTheme] = useState<'dark' | 'light'>('light')
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark')
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
   const [zoomedImage, setZoomedImage] = useState<string | null>(null)
@@ -299,7 +299,7 @@ function App() {
                 Let&apos;s build something <span>together.</span>
               </h2>
               <p>
-                I&apos;m currently interviewing for junior developer roles. If
+                I&apos;m currently interviewing for junior & full stock developer roles. If
                 you&apos;re hiring, I&apos;d love to chat.
               </p>
               <div className="hero-actions center">
