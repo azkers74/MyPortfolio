@@ -389,14 +389,16 @@ function App() {
                 )}
               </div>
               <div className="modal-details">
-                <h3>Project Details</h3>
-                <p>{selectedProject.description}</p>
-                <h4>Tech Stack</h4>
-                <ul className="tech-list">
-                  {selectedProject.stack.map((tech) => (
-                    <li key={tech}>{tech}</li>
-                  ))}
-                </ul>
+                <div className="project-details-scroll">
+                  <h3>Project Details</h3>
+                  <p>{selectedProject.description}</p>
+                  <h4>Tech Stack</h4>
+                  <ul className="tech-list">
+                    {selectedProject.stack.map((tech) => (
+                      <li key={tech}>{tech}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
