@@ -58,11 +58,11 @@ function App() {
       images: [`${import.meta.env.BASE_URL}FCT1.png`, `${import.meta.env.BASE_URL}FCT2.png`, `${import.meta.env.BASE_URL}FCT3.png`, `${import.meta.env.BASE_URL}FCT4.png`, `${import.meta.env.BASE_URL}FCT5.png`],
     },
     {
-      title: 'SD APP (Source and Destination App)',
+      title: 'SD APP',
       description:
         'A logistics routing and costing system that manages Source-to-Destination trip configurations. It enables registration of routes with Trip KM, fuel budget approval, driver/helper rate computation, and dynamic trip rate calculation per assignment.',
       stack: ['Power Apps vite', 'Power Automate', 'React', 'TypeScript', 'SQL', 'SharePoint'],
-      images: [`${import.meta.env.BASE_URL}SD1.png`, `${import.meta.env.BASE_URL}SD2.png`, `${import.meta.env.BASE_URL}SD3.png`, `${import.meta.env.BASE_URL}SD4.png`, `${import.meta.env.BASE_URL}SD5.png`, `${import.meta.env.BASE_URL}SD6.png`],
+      images: [`${import.meta.env.BASE_URL}SD1.png`, `${import.meta.env.BASE_URL}SD2.png`, `${import.meta.env.BASE_URL}SD3.png`, `${import.meta.env.BASE_URL}SD4.png`, `${import.meta.env.BASE_URL}SD5.png`, `${import.meta.env.BASE_URL}SD6.png`, `${import.meta.env.BASE_URL}SD7.png`],
     },
 
   ]
