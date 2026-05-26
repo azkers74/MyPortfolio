@@ -49,20 +49,29 @@ function App() {
         'Automated trip and sales monitoring system built on Google Sheets. Provides client trip tracking, rate computation, sales recording, and real-time status updates in a centralized dashboard.',
       stack: ['Google Sheets', 'Google Apps Script', 'Google Gspreed API',  'Sheets API', 'Pivot Tables'],
       images: [`${import.meta.env.BASE_URL}DMS CARGO.png`, `${import.meta.env.BASE_URL}DMS PORT VISMIN.png`, `${import.meta.env.BASE_URL}DMS ZION.png`],
+    
     },
     {
       title: 'FCT (Fuel Control Team)',
       description:
         'Fuel request and liquidation management system built using Power Apps Canvas. Enables users to submit fuel requests, attach receipts, and complete liquidation per transaction. Integrates SharePoint for document and attachment storage, and SQL for structured data management. Includes approval workflows, real-time status tracking, fuel consumption monitoring, audit logs, and centralized reporting to ensure transparency, compliance, and efficient fuel control operations.',
       stack: ['Power Apps Canvas', 'SharePoint', 'Microsoft SQL Server', 'Power Automate','Stored Procedures'],
-      images: [`${import.meta.env.BASE_URL}FCT1.png`, `${import.meta.env.BASE_URL}FCT2.png`, `${import.meta.env.BASE_URL}FCT3.png`, `${import.meta.env.BASE_URL}FCT4.png`, `${import.meta.env.BASE_URL}FCT5.png`],
+      // images: [`${import.meta.env.BASE_URL}FCT1.png`, `${import.meta.env.BASE_URL}FCT2.png`, `${import.meta.env.BASE_URL}FCT3.png`, `${import.meta.env.BASE_URL}FCT4.png`, `${import.meta.env.BASE_URL}FCT5.png`],
+      images: Array.from(
+      { length: 5 },
+      (_, i) => `${import.meta.env.BASE_URL}FCT${i + 1}.png`
+      ),
     },
     {
       title: 'SD APP',
       description:
         'A logistics routing and costing system that manages Source-to-Destination trip configurations. It enables registration of routes with Trip KM, fuel budget approval, driver/helper rate computation, and dynamic trip rate calculation per assignment.',
       stack: ['Power Apps vite', 'Power Automate', 'React', 'TypeScript', 'SQL', 'SharePoint'],
-      images: [`${import.meta.env.BASE_URL}SD1.png`, `${import.meta.env.BASE_URL}SD2.png`, `${import.meta.env.BASE_URL}SD3.png`, `${import.meta.env.BASE_URL}SD4.png`, `${import.meta.env.BASE_URL}SD5.png`, `${import.meta.env.BASE_URL}SD6.png`, `${import.meta.env.BASE_URL}SD7.png`],
+      // images: [`${import.meta.env.BASE_URL}SD1.png`, `${import.meta.env.BASE_URL}SD2.png`, `${import.meta.env.BASE_URL}SD3.png`, `${import.meta.env.BASE_URL}SD4.png`, `${import.meta.env.BASE_URL}SD5.png`, `${import.meta.env.BASE_URL}SD6.png`, `${import.meta.env.BASE_URL}SD7.png`],
+      images: Array.from(
+      { length: 7 },
+      (_, i) => `${import.meta.env.BASE_URL}SD${i + 1}.png`
+      ),
     },
 
   ]
@@ -303,7 +312,12 @@ function App() {
                 you&apos;re hiring, I&apos;d love to chat.
               </p>
               <div className="hero-actions center">
-                <a className="btn btn-primary" href="mailto:azkers05@gmail.com">
+                <a
+                  className="btn btn-primary"
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=azkers05@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   azkers05@gmail.com
                 </a>
                 <a className="btn btn-outline" href={cvUrl} download>
