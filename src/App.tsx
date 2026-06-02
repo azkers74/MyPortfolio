@@ -361,7 +361,7 @@ function App() {
                       <circle cx="12" cy="12" r="3" />
                     </svg>
                   </button>
-                </div>3
+                </div>
                 {selectedProject.images && selectedProject.images.length > 0 && (
                   <div className="image-controls">
                     {selectedProject.images.length > 1 && (
