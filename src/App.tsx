@@ -110,7 +110,7 @@ function App() {
         <section className="hero" id="top">
           <div className="container hero-grid">
             <article className="hero-copy">
-              <p className="status-pill">Available for junior & Full stock developer roles</p>
+              <p className="status-pill">Available for junior & Full stack developer roles</p>
               <h1>
                 Building clean,
                 <br />
@@ -361,7 +361,7 @@ function App() {
                       <circle cx="12" cy="12" r="3" />
                     </svg>
                   </button>
-                </div>
+                </div>3
                 {selectedProject.images && selectedProject.images.length > 0 && (
                   <div className="image-controls">
                     {selectedProject.images.length > 1 && (
